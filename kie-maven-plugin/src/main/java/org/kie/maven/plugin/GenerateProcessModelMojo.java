@@ -205,7 +205,7 @@ public class GenerateProcessModelMojo extends AbstractKieMojo {
                 Files.write(pathOf(pi.generatedFilePath()), pi.generate().getBytes());
             }
 
-            String workItemHandlerConfigClass = "org.kie.submarine.project.WorkItemHandlerConfig";
+            String workItemHandlerConfigClass = project.getGroupId() + ".WorkItemHandlerConfig";
             Path p = Paths.get(sourceDir.getPath(),
                                "main/java",
                                workItemHandlerConfigClass.replace('.', '/') + ".java");

@@ -1,0 +1,63 @@
+{  
+   "id": "function",
+   "name": "test-wf",
+   "starts-at": "HelloWorld",
+   "states":[  
+      {  
+         "name":"HelloWorld",
+         "type":"OPERATION",
+         "action-mode":"SEQUENTIAL",
+         "actions":[  
+            {  
+               "function": {
+                  "name": "helloOne",
+                  "type": "script",
+                  "parameters" : {
+                  	"script" : "System.out.println(\"First Serverless Workflow World\");"
+                  }
+               }            
+            }
+         ],
+         "next-state":"UpdateArg"
+      },
+      {  
+         "name":"UpdateArg",
+         "type":"OPERATION",
+         "action-mode":"SEQUENTIAL",
+         "filter": {
+              "input-path": "$.trace",
+              "result-path": "$.trace",
+              "output-path": "$.stateerror"
+            },         
+        "actions":[  
+			{  
+               "function": {
+                  "name": "helloTwo",
+                  "type": "script",
+                  "parameters" : {
+                  	"script" : "System.out.println(\"Second Serverless Workflow World\");"
+                  }
+               }            
+            }
+         ],
+         "next-state":"SaveResult"
+      },
+      {  
+         "name":"SaveResult",
+         "type":"OPERATION",
+         "end":true,
+         "action-mode":"SEQUENTIAL",
+         "actions":[  
+            {  
+               "function": {
+                  "name": "helloThree",
+                  "type": "script",
+                  "parameters" : {
+                  	"script" : "System.out.println(\"Third Serverless Workflow World\");"
+                  }
+               }            
+            }
+         ]
+      }
+   ]
+}

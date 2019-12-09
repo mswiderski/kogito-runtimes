@@ -1,0 +1,30 @@
+{
+  "type": "object",
+  "javaType": "org.jbpm.serverless.workflow.api.states.DelayState",
+  "javaInterfaces": [
+    "org.jbpm.serverless.workflow.api.interfaces.State"
+  ],
+  "description": "This state is used to wait for events from event sources and then transitioning to a next state",
+  "extends": {
+    "$ref": "defaultstate.json"
+  },
+  "properties": {
+    "time-delay": {
+      "type": "string",
+      "description": "Amount of time (ISO 8601 format) to delay"
+    },
+    "next-state": {
+      "type": "string",
+      "description": "Name of the next state to transition to after all the actions for the matching event have been successfully executed",
+      "minLength": 1
+    },
+    "metadata": {
+      "$ref": "../metadata/metadata.json"
+    }
+  },
+  "required": [
+    "name",
+    "type",
+    "time-delay"
+  ]
+}
